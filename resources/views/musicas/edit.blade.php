@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Create a new Post</h2>
+            <h2>Edite sua música</h2>
         </div>
     </div>
 </div>

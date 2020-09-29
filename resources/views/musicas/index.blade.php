@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Produtos</h2>
+            <h2>Músicas</h2>
         </div>
     </div>
 </div>
@@ -40,7 +40,7 @@
       <th scope="row">{{$musica->id}}</th>
       <td>
       <a href="{{ url("/musicas/{$musica->id}") }}">
-        {{$musica->title}}
+        {{$musica->titulo}}
       </a>
       <td>{{ $musica->user->name }}</td>
       </td>
