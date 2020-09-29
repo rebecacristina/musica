@@ -87,7 +87,7 @@ class MusicaController extends Controller
     {
         if($musica->user_id === Auth::id()){
             $musica->update($request->all());
-            return redirect()->route('musicas.index')->with('success', 'Produto editado com sucesso');;
+            return redirect()->route('musicas.index')->with('success', 'Música editada com sucesso');;
             }else{
                 return redirect()->route('musicas.index')
                 ->with('error', 'Não pode editar')
@@ -108,7 +108,7 @@ class MusicaController extends Controller
             
             $musica->delete();
     
-            return redirect()->route('musicas.index')->with('success', 'Produto deletado com sucesso');;
+            return redirect()->route('musicas.index')->with('success', 'Música deletada com sucesso');;
             }else{
                 return redirect()->back()
                 ->with('error', 'Não pode deletar')
