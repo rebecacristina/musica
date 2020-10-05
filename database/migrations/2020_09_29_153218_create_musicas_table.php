@@ -17,6 +17,9 @@ class CreateMusicasTable extends Migration
             $table->id();
             $table->string('titulo', 150);
             $table->text('letra');
+            $table->integer('ano');
+            $table->integer('album');
+            $table->integer('premios');
             $table->foreignid('user_id')->onstrained();
             $table->timestamps();
         });

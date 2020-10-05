@@ -39,7 +39,17 @@ class MusicaController extends Controller
      */
     public function store(Request $request)
     {
-        $musica = new Musica($request->all());
+        //Product::create($request->all());
+
+        $validateData = $request->validate([
+                'titulo' => ['required', 'unique:musicas'],
+                'letra' =>['required'],
+                'ano' =>['required'],
+                'album' =>['required'],
+                'premios' =>['required'],
+            ]);
+
+        $musica = new Musica($validateData);
 
         $musica->user_id = Auth::id();
 

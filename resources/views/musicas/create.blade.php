@@ -2,6 +2,18 @@
 @section('content')
 
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+    <strong>Eita!</strong> Problema encontrado <br><br>
+    <ul>
+        @foreach($errors->all() as $error)
+            <li>{{$error}}</li>
+    @endforeach 
+    </ul> 
+    </div>
+    @endif
+
+
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
@@ -26,6 +38,33 @@
                 <div class="form-group">
                 <strong>Letra:</strong>
                 <textarea  name="letra" class="form-control"> </textarea>
+                </div>
+         </div>
+     </div>
+
+     <div class="row">
+        <div class="col">
+                <div class="form-group">
+                <strong>Ano:</strong>
+                <input type="number" name="ano" class="form-control"> </input>
+                </div>
+         </div>
+     </div>
+
+     <div class="row">
+        <div class="col">
+                <div class="form-group">
+                <strong>Album:</strong>
+                <input type="number" name="album" class="form-control"> </input>
+                </div>
+         </div>
+     </div>
+
+     <div class="row">
+        <div class="col">
+                <div class="form-group">
+                <strong>Premios:</strong>
+                <input type="number" name="premios" class="form-control"> </input>
                 </div>
          </div>
      </div>

@@ -32,6 +32,34 @@
      </div>
 
      <div class="row">
+        <div class="col">
+                <div class="form-group">
+                <strong>Ano:</strong>
+                <input type="number" name="ano" class="form-control" value="{{$musica->ano}}">
+                </div>
+         </div>
+     </div>
+
+     <div class="row">
+        <div class="col">
+                <div class="form-group">
+                <strong>Album:</strong>
+                <input type="number" name="album" class="form-control" value="{{$musica->album}}">
+                </div>
+         </div>
+     </div>
+
+     <div class="row">
+        <div class="col">
+                <div class="form-group">
+                <strong>Premios:</strong>
+                <input type="number" name="premios" class="form-control" value="{{$musica->premios}}">
+                </div>
+         </div>
+     </div>
+
+
+     <div class="row">
         <div class="col text-center">
                 
                 <button type="submit" class="btn col btn-primary">UPDATE</button>

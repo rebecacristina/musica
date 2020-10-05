@@ -10,7 +10,7 @@ class Musica extends Model
     use HasFactory;
 
     protected $fillable = [
-        'titulo', 'letra'
+        'titulo', 'letra', 'ano', 'album', 'premios', 
     ];
     public function user()
     {
