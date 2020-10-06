@@ -22,7 +22,7 @@
     </div>
 </div>
 
-<form action="{{ route('musicas.store') }}" method="POST">
+<form action="{{ route('musicas.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col">
@@ -65,6 +65,15 @@
                 <div class="form-group">
                 <strong>Premios:</strong>
                 <input type="number" name="premios" class="form-control"> </input>
+                </div>
+         </div>
+     </div>
+
+     <div class="row">
+        <div class="col">
+                <div class="form-group">
+                <strong>Imagem do album:</strong>
+                <input type="file" id="image" name="image" class="form-control" >
                 </div>
          </div>
      </div>

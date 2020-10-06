@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Musica;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class MusicaController extends Controller
 {
@@ -39,7 +41,7 @@ class MusicaController extends Controller
      */
     public function store(Request $request)
     {
-        //Product::create($request->all());
+        //musica::create($request->all());
 
         $validateData = $request->validate([
                 'titulo' => ['required', 'unique:musicas'],
@@ -47,6 +49,7 @@ class MusicaController extends Controller
                 'ano' =>['required'],
                 'album' =>['required'],
                 'premios' =>['required'],
+                'image'=> ['mimes:jpeg,png', 'dimensions:min_width=200,min_height=200']
             ]);
 
         $musica = new Musica($validateData);
@@ -54,6 +57,18 @@ class MusicaController extends Controller
         $musica->user_id = Auth::id();
 
         $musica->save();
+
+        if($request->hasFile('image') and $request->file('image')->isValid()){
+            $extension = $request->image->extension();
+            $image_name = now()->toDateTimeString()."_".substr(base64_encode(sha1(mt_rand())
+            ), 0, 10);
+            $path = $request->image->storeAs('musicas', $image_name.".".$extension, 'public');
+
+            $image = new Image();
+            $image->musica_id = $musica->id;
+            $image->path = $path;
+            $image->save();
+        }
         
         return redirect()->route('musicas.index')->with('success', 'Música criada com sucesso');
     }
@@ -65,7 +80,7 @@ class MusicaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Musica $musica)
-    {
+    {   
         return view('musicas.show', compact('musica'));
     }
 
@@ -97,6 +112,23 @@ class MusicaController extends Controller
     {
         if($musica->user_id === Auth::id()){
             $musica->update($request->all());
+
+            if($request->hasFile('image') and $request->file('image')->isValid()){
+                $musica->image->delete();
+                
+                $extension = $request->image->extension();
+                $image_name = now()->toDateTimeString()."_".substr(base64_encode(sha1(mt_rand())
+               ), 0, 10);
+               $path = $request->image->storeAs('musicas', $image_name.".".$extension, 'public');
+               
+               $image = new Image();
+               $image->path = $path;
+               $image->musica_id = $musica->id;
+               $image->save();
+               
+           }
+
+
             return redirect()->route('musicas.index')->with('success', 'Música editada com sucesso');;
             }else{
                 return redirect()->route('musicas.index')

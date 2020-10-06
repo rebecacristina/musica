@@ -10,7 +10,7 @@
     </div>
 </div>
 
-<form action="{{ route('musicas.update', $musica->id) }}" method="POST">
+<form action="{{ route('musicas.update', $musica->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="row">
@@ -57,7 +57,15 @@
                 </div>
          </div>
      </div>
-
+     <div class="row">
+        <div class="col">
+                <div class="form-group">
+                <strong class ="col-2">Imagem:</strong>
+                <img class="col-2" src="{{ asset('storage/'.$musica->image->path) }}" alt="">
+                <input class ="col-8" type="file" id="image" name="image" class="form-control">
+                </div>
+         </div>
+     </div>
 
      <div class="row">
         <div class="col text-center">
