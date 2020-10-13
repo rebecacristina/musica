@@ -45,6 +45,18 @@
 
                             </div>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a id="ManageDropdown" class="nav-link dropdown-toggle" href="#" role="buton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Tipos <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria_labelledby="ManageDropdown">
+                                <a class="nav-link" href="{{ route('tipos.index') }}">{{ __('Tipos Index') }}</a>
+                                <a class="nav-link" href="{{ route('tipos.create') }}">{{ __('Novo Tipo') }}</a>
+
+                            </div>
+                        </li>
 
                     </ul>
 

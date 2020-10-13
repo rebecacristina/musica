@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MusicaController;
+use App\Http\Controllers\TipoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,7 @@ Route::get('/', function () {
 
 
 Route::resource('/musicas', MusicaController::class)->middleware('auth');
+Route::resource('/tipos', TipoController::class)->middleware('auth');
 
 Auth::routes();
 
