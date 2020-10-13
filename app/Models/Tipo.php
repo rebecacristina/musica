@@ -13,7 +13,7 @@ class Tipo extends Model
         'name',
     ];
 
-    /*public function musicas(){
+    public function musicas(){
         return $this->belongsToMany('App\Models\Musica');
-    }*/
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Musica;
 use App\Models\Image;
+use App\Models\Tipo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -29,8 +30,9 @@ class MusicaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('musicas.create');
+    {   
+        $tipos = Tipo::all();
+        return view('musicas.create', compact('tipos'));
     }
 
     /**
@@ -49,7 +51,8 @@ class MusicaController extends Controller
                 'ano' =>['required'],
                 'album' =>['required'],
                 'premios' =>['required'],
-                'image'=> ['mimes:jpeg,png', 'dimensions:min_width=200,min_height=200']
+                'image'=> ['mimes:jpeg,png', 'dimensions:min_width=200,min_height=200'],
+                'tipos_id'=>['array']
             ]);
 
         $musica = new Musica($validateData);
@@ -57,6 +60,7 @@ class MusicaController extends Controller
         $musica->user_id = Auth::id();
 
         $musica->save();
+        $musica->tipos()->attach($validateData['tipos_id']);
 
         if($request->hasFile('image') and $request->file('image')->isValid()){
             $extension = $request->image->extension();
@@ -80,7 +84,8 @@ class MusicaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Musica $musica)
-    {   
+    {
+        
         return view('musicas.show', compact('musica'));
     }
 
@@ -93,7 +98,8 @@ class MusicaController extends Controller
     public function edit(Musica $musica)
     {
         if($musica->user_id === Auth::id()){
-            return view('musicas.edit', compact('musica'));
+            $tipos = Tipo::all();
+            return view('musicas.edit', compact('musica', 'tipos'));
             }else{
                 return redirect()->route('musicas.index')
                 ->with('error', 'Não foi possível editar')

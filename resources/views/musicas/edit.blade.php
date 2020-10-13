@@ -68,6 +68,23 @@
      </div>
 
      <div class="row">
+        <div class="col">
+                <div class="form-group">
+                <strong>Tipos musicais:</strong>
+                    <select class="custom-select" name="tipos_id[]" multiple>
+                        @foreach ($tipos as $tipo)
+                            @if($musica->tipos->contains($tipo))
+                            <option value="{{ $tipo->id }}" selected>{{ $tipo->name }}</option>
+                            @else
+                            <option value="{{ $tipo->id }}">{{ $tipo->name }}</option>
+                            @endif
+                        @endforeach    
+                    </select>
+                </div>
+         </div>
+     </div>
+
+     <div class="row">
         <div class="col text-center">
                 
                 <button type="submit" class="btn col btn-primary">UPDATE</button>

@@ -49,6 +49,19 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
+            <strong>Tipos musicais:</strong>
+           @foreach ($musica->tipos as $tipo) 
+            
+            {{$tipo->name}}
+
+          @endforeach  
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
             <strong>Updated:</strong>
             {{$musica->updated_at}}
         </div>

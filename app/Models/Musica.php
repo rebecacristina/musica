@@ -30,4 +30,8 @@ class Musica extends Model
     {
         return $this->hasOne('App\Models\Image');
     }
+
+    public function tipos(){
+        return $this->belongsToMany('App\Models\Tipo')->withTimestamps();
+    }
 }
